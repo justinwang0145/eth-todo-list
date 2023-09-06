@@ -10,7 +10,7 @@
     "dev": "lite-server",
     "test": "echo \"Error: no test specified\" && sexit 1"
   },
-  "author": "wanghuadi0145@gmail.com",
+  "author": "gregory@dappuniversity.com",
   "license": "ISC",
   "devDependencies": {
     "bootstrap": "4.1.3",
@@ -20,6 +20,7 @@
     "lite-server": "^2.3.0",
     "nodemon": "^1.17.3",
     "truffle": "5.0.2",
-    "truffle-contract": "3.0.6"
+    "truffle-contract": "3.0.6",
+    "web3": "^0.20.6"
   }
 }
