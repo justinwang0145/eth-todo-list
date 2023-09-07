@@ -25,6 +25,11 @@ contract Todolist {
         bool completed
     );
 
+    event TaskCompleted(
+        uint id,
+        bool completed
+    );
+
     // Now we need to define a way to put task in database
     function createTask(string memory _content) public {
         taskCount ++;
@@ -35,6 +40,15 @@ contract Todolist {
         // in Client-Side Application, we can subscribe those events 
         emit TaskCreated(taskCount, _content, false);
         
+    }
+
+    function toggleCompleted(uint _id) public {
+        // underscore means this is local variable, not state variable, just a convention
+        Task memory _task = tasks[_id];
+        _task.completed = !_task.completed;
+        tasks[_id] = _task;
+
+        emit TaskCompleted(_id, _task.completed);
     }
 
     // Populate our list so when call it up at client side, already have some items for us
