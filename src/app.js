@@ -7,6 +7,8 @@ App = {
     await App.loadAccount();
     await App.loadContract();
     await App.render();
+    // This error appears when you do not have a defaultAccount property set in the web3.eth object. Need this one
+    web3.eth.defaultAccount = App.account;
   },
 
   // Todolist application backed by blockchain, connect to it to use it
@@ -124,6 +126,16 @@ App = {
       // show the task
       $newTaskTemplate.show();
     }
+  },
+
+  createTask: async () => {
+    App.setLoading(true);
+    const content = $("#newTask").val();
+
+    // Call smart contract function
+    await App.todoList.createTask(content);
+
+    window.location.reload();
   },
 
   setLoading: (boolean) => {

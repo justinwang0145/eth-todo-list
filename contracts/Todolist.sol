@@ -19,10 +19,22 @@ contract Todolist {
     // first type is key, second type is data
     mapping(uint => Task) public tasks;
 
+    event TaskCreated(
+        uint id,
+        string content, 
+        bool completed
+    );
+
     // Now we need to define a way to put task in database
     function createTask(string memory _content) public {
         taskCount ++;
         tasks[taskCount] = Task(taskCount, _content, false);
+
+        // broadcast an event that this task is created.
+        // Solidity allow us to create an event that are triggered when something happen in smart contract
+        // in Client-Side Application, we can subscribe those events 
+        emit TaskCreated(taskCount, _content, false);
+        
     }
 
     // Populate our list so when call it up at client side, already have some items for us
